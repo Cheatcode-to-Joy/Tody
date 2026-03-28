@@ -6,14 +6,17 @@ var screen_height = 540
 @export var movable_space: Node2D
 var scroll_tween: Tween = null
 
+@export var lock_animator: AnimationPlayer
 var lock_enabled: bool = false
 
 func toggle_lock(new_enabled: bool) -> void:
 	if (lock_enabled && !new_enabled):
-		lock_enabled = false ## TODO: add animations here
+		lock_enabled = false
+		lock_animator.play("unlock")
 		return
 	if (!lock_enabled && new_enabled):
-		lock_enabled = true ## TODO: add animations here
+		lock_enabled = true
+		lock_animator.play("lock")
 		if scroll_tween: scroll_tween.kill()
 		return
 

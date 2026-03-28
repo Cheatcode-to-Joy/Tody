@@ -2,12 +2,113 @@
 
 [ext_resource type="TileSet" uid="uid://bcfmgx883d77o" path="res://resources/tile_sets/foreground_tile_set.tres" id="1_5f2gl"]
 [ext_resource type="Script" uid="uid://bgv08t3tjgs5s" path="res://scenes/levels/level_slice.gd" id="1_bt8eo"]
+[ext_resource type="Texture2D" uid="uid://csrrpkul5b6y" path="res://assets/user_interface/game_hud/game_hud.png" id="3_savel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bt8eo"]
 
-[node name="LevelSlice" type="Node2D" unique_id=328838689 node_paths=PackedStringArray("movable_space")]
+[sub_resource type="AtlasTexture" id="AtlasTexture_6qann"]
+atlas = ExtResource("3_savel")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5mvq"]
+resource_local_to_scene = true
+atlas = ExtResource("3_savel")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="Animation" id="Animation_savel"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LockBorder:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LockBorder/LockIcon:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_6qann"]
+resource_name = "lock"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LockBorder:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LockBorder/LockIcon:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(160, 0, 32, 32), Rect2(128, 0, 32, 32), Rect2(96, 0, 32, 32), Rect2(64, 0, 32, 32), Rect2(32, 0, 32, 32), Rect2(0, 0, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_g5mvq"]
+resource_name = "unlock"
+length = 0.39999999999999997
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LockBorder:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("LockBorder/LockIcon:texture:region")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.08, 0.16, 0.24, 0.32, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32), Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32), Rect2(128, 0, 32, 32), Rect2(160, 0, 32, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g5mvq"]
+_data = {
+&"RESET": SubResource("Animation_savel"),
+&"lock": SubResource("Animation_6qann"),
+&"unlock": SubResource("Animation_g5mvq")
+}
+
+[node name="LevelSlice" type="Node2D" unique_id=328838689 node_paths=PackedStringArray("movable_space", "lock_animator")]
 script = ExtResource("1_bt8eo")
 movable_space = NodePath("MovableSpace")
+lock_animator = NodePath("LockAnimator")
 
 [node name="MovableSpace" type="Node2D" parent="." unique_id=1444613658]
 
@@ -26,6 +127,28 @@ scale = Vector2(11.6, 27)
 
 [node name="SliceShape" type="CollisionShape2D" parent="SliceArea" unique_id=2141917400]
 shape = SubResource("RectangleShape2D_bt8eo")
+
+[node name="LockBorder" type="NinePatchRect" parent="." unique_id=150059450]
+modulate = Color(1, 1, 1, 0)
+offset_right = 240.0
+offset_bottom = 540.0
+texture = SubResource("AtlasTexture_6qann")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="LockIcon" type="TextureRect" parent="LockBorder" unique_id=430459456]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 8.0
+offset_right = 136.0
+offset_bottom = 40.0
+texture = SubResource("AtlasTexture_g5mvq")
+stretch_mode = 5
+
+[node name="LockAnimator" type="AnimationPlayer" parent="." unique_id=636145478]
+libraries/ = SubResource("AnimationLibrary_g5mvq")
 
 [connection signal="body_entered" from="SliceArea" to="." method="_on_slice_area_body_entered"]
 [connection signal="body_exited" from="SliceArea" to="." method="_on_slice_area_body_exited"]
