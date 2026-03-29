@@ -2,15 +2,29 @@
 
 [ext_resource type="Script" uid="uid://bogf0g8u0lu42" path="res://scenes/player/player_character.gd" id="1_eebfp"]
 [ext_resource type="Texture2D" uid="uid://dg4f52ncxl1n0" path="res://icon.svg" id="2_e1j0t"]
+[ext_resource type="Script" uid="uid://dpe3f6x42u1s5" path="res://scenes/player/player_state.gd" id="3_e1j0t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hovw3"]
 
-[node name="PlayerCharacter" type="CharacterBody2D" unique_id=678544665 groups=["player"]]
+[node name="PlayerCharacter" type="CharacterBody2D" unique_id=565713581 node_paths=PackedStringArray("state", "buffer_timer") groups=["player"]]
 script = ExtResource("1_eebfp")
+state = NodePath("PlayerState")
+buffer_timer = NodePath("BufferTimer")
+metadata/_custom_type_script = "uid://bogf0g8u0lu42"
 
 [node name="PlayerShape" type="CollisionShape2D" parent="." unique_id=1908180879]
 shape = SubResource("RectangleShape2D_hovw3")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=316987211]
+[node name="PlayerSprite" type="Sprite2D" parent="." unique_id=316987211]
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_e1j0t")
+
+[node name="PlayerState" type="Node" parent="." unique_id=373885208 node_paths=PackedStringArray("player")]
+script = ExtResource("3_e1j0t")
+player = NodePath("..")
+metadata/_custom_type_script = "uid://dpe3f6x42u1s5"
+
+[node name="BufferTimer" type="Timer" parent="." unique_id=1130702717]
+one_shot = true
+
+[connection signal="player_vstate_changed" from="PlayerState" to="." method="_on_state_vstate_changed"]
