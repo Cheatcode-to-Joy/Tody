@@ -11,6 +11,9 @@ const GRAVITY_STRENGTH = 300.0
 @export var buffer_timer: Timer
 const BUFFER_TIME = 0.3
 
+@export var coyote_timer: Timer
+const COYOTE_TIME = 0.3
+
 func _physics_process(delta: float) -> void:
 	velocity.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * delta * RUN_SPEED
 	velocity.y += GRAVITY_STRENGTH * delta
@@ -21,12 +24,18 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		if state.vstate == state.vstates.STAND:
 			jump()
+		elif coyote_timer.time_left > 0:
+			jump()
+			coyote_timer.stop()
 		else:
 			buffer_timer.start(BUFFER_TIME)
 
 func jump() -> void:
 	velocity.y -= JUMP_STRENGTH
 
-func _on_state_vstate_changed(vstate: PlayerState.vstates) -> void:
-	if vstate == state.vstates.STAND && buffer_timer.time_left > 0:
+func _on_state_vstate_changed(old_vstate: PlayerState.vstates, new_vstate: PlayerState.vstates) -> void:
+	if new_vstate == state.vstates.STAND && buffer_timer.time_left > 0:
 		jump()
+		return
+	if old_vstate == state.vstates.STAND && new_vstate == state.vstates.FALL:
+		coyote_timer.start(COYOTE_TIME)

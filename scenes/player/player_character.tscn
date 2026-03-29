@@ -6,10 +6,11 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hovw3"]
 
-[node name="PlayerCharacter" type="CharacterBody2D" unique_id=565713581 node_paths=PackedStringArray("state", "buffer_timer") groups=["player"]]
+[node name="PlayerCharacter" type="CharacterBody2D" unique_id=565713581 node_paths=PackedStringArray("state", "buffer_timer", "coyote_timer") groups=["player"]]
 script = ExtResource("1_eebfp")
 state = NodePath("PlayerState")
 buffer_timer = NodePath("BufferTimer")
+coyote_timer = NodePath("CoyoteTimer")
 metadata/_custom_type_script = "uid://bogf0g8u0lu42"
 
 [node name="PlayerShape" type="CollisionShape2D" parent="." unique_id=1908180879]
@@ -25,6 +26,9 @@ player = NodePath("..")
 metadata/_custom_type_script = "uid://dpe3f6x42u1s5"
 
 [node name="BufferTimer" type="Timer" parent="." unique_id=1130702717]
+one_shot = true
+
+[node name="CoyoteTimer" type="Timer" parent="." unique_id=34056453]
 one_shot = true
 
 [connection signal="player_vstate_changed" from="PlayerState" to="." method="_on_state_vstate_changed"]
