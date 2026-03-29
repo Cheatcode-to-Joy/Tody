@@ -39,7 +39,7 @@ func process_vstates() -> void:
 func process_hstates() -> void:
 	var action_strength = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	if is_zero_approx(action_strength):
-		if hstate != hstates.MOVE:
+		if hstate != hstates.STAY:
 			player_hstate_changed.emit(hstate, hstates.STAY)
 			hstate = hstates.STAY
 		return

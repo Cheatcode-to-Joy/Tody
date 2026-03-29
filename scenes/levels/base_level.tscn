@@ -3,16 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dd5serc8gcqcu" path="res://scenes/levels/level_slice.tscn" id="1_md458"]
 [ext_resource type="PackedScene" uid="uid://dvum35wxpfr6" path="res://scenes/player/player_character.tscn" id="2_uk53i"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uk53i"]
-
 [node name="BaseLevel" type="Node2D" unique_id=1361941842]
-
-[node name="BoundaryTop" type="StaticBody2D" parent="." unique_id=603982313]
-
-[node name="ShapeTop" type="CollisionShape2D" parent="BoundaryTop" unique_id=1844971988]
-position = Vector2(0, 270)
-rotation = 1.5707964
-shape = SubResource("WorldBoundaryShape2D_uk53i")
 
 [node name="LevelSlice" parent="." unique_id=328838689 instance=ExtResource("1_md458")]
 
