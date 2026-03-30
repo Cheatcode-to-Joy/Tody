@@ -14,6 +14,7 @@ config/name="Tody"
 config/version="0.1"
 run/main_scene="uid://ecwqusamvqti"
 config/features=PackedStringArray("4.7", "Forward Plus")
+boot_splash/bg_color=Color(0.23137255, 0.34901962, 0.6039216, 1)
 config/icon="res://icon.svg"
 
 [display]
@@ -61,3 +62,4 @@ jump={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+environment/defaults/default_clear_color=Color(0.23137255, 0.34901962, 0.6039216, 1)

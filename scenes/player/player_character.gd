@@ -7,7 +7,7 @@ class_name PlayerCharacter
 @export var state: PlayerState
 
 const RUN_SPEED = 180.0
-const JUMP_STRENGTH = 260.0
+const JUMP_STRENGTH = 290.0
 const GRAVITY_STRENGTH = 600.0
 
 @export var buffer_timer: Timer
