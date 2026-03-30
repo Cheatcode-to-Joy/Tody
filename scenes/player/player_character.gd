@@ -6,9 +6,9 @@ class_name PlayerCharacter
 @export var tree: PlayerTree
 @export var state: PlayerState
 
-const RUN_SPEED = 10000.0
-const JUMP_STRENGTH = 200.0
-const GRAVITY_STRENGTH = 300.0
+const RUN_SPEED = 180.0
+const JUMP_STRENGTH = 260.0
+const GRAVITY_STRENGTH = 600.0
 
 @export var buffer_timer: Timer
 const BUFFER_TIME = 0.3
@@ -17,7 +17,7 @@ const BUFFER_TIME = 0.3
 const COYOTE_TIME = 0.3
 
 func _physics_process(delta: float) -> void:
-	velocity.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * delta * RUN_SPEED
+	velocity.x = (Input.get_action_strength("move_right") - Input.get_action_strength("move_left")) * RUN_SPEED
 	velocity.y += GRAVITY_STRENGTH * delta
 
 	tree.is_on_floor = is_on_floor()

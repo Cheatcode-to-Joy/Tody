@@ -1,6 +1,6 @@
 extends Node2D
 
-const DEFAULT_SCROLL_SPEED = 40.0
+const DEFAULT_SCROLL_SPEED = 25.0
 var screen_height = 540
 
 @export var movable_space: Node2D

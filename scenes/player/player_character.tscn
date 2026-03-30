@@ -9,7 +9,7 @@
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s66ro"]
 atlas = ExtResource("2_e1j0t")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e1j0t"]
 animation = &"falling"
@@ -128,22 +128,10 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Label:text")
+tracks/0/path = NodePath("../PlayerSprite:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": ["text"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PlayerSprite:texture:region")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
@@ -152,51 +140,38 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_fn450"]
 resource_name = "falling"
+length = 8.0
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Label:text")
+tracks/0/path = NodePath("../PlayerSprite:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": ["falling", "falling
-"]
+"values": [Rect2(128, 0, 32, 32), Rect2(160, 0, 32, 32)]
 }
 
 [sub_resource type="Animation" id="Animation_ifuus"]
 resource_name = "idle1"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Label:text")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": ["idle1", "idle1
-"]
-}
 
 [sub_resource type="Animation" id="Animation_2h7np"]
 resource_name = "jumping"
-loop_mode = 1
+length = 8.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Label:text")
+tracks/0/path = NodePath("../PlayerSprite:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
+"times": PackedFloat32Array(0, 0.3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": ["jumping", "jumping"]
+"values": [Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32)]
 }
 
 [sub_resource type="Animation" id="Animation_n4nw3"]
@@ -205,22 +180,10 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Label:text")
+tracks/0/path = NodePath("../PlayerSprite:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [""]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PlayerSprite:texture:region")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.20000005, 0.4000001, 0.6, 0.8000001),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
@@ -233,22 +196,10 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Label:text")
+tracks/0/path = NodePath("../PlayerSprite:texture:region")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": ["", ""]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../PlayerSprite:texture:region")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5, 1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
@@ -301,10 +252,6 @@ one_shot = true
 
 [node name="CoyoteTimer" type="Timer" parent="." unique_id=34056453]
 one_shot = true
-
-[node name="Label" type="Label" parent="." unique_id=432235391]
-offset_right = 40.0
-offset_bottom = 23.0
 
 [connection signal="player_hstate_changed" from="PlayerState" to="." method="_on_state_hstate_changed"]
 [connection signal="player_orientation_changed" from="PlayerState" to="." method="_on_state_orientation_changed"]
