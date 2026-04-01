@@ -6,4 +6,4 @@
 resource_local_to_scene = true
 shader = ExtResource("1_i1y5r")
 shader_parameter/tint_power = 1.0
-shader_parameter/tint_hue = Color(1, 0.89411765, 0.47450978, 1)
+shader_parameter/tint_hue = Color(0.4862745, 1, 0.99607843, 0.58431375)
