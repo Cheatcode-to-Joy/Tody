@@ -4,10 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://bun66ybyogtq5" path="res://scenes/levels/transition_area.tscn" id="1_ukglk"]
 [ext_resource type="Script" uid="uid://dshav4nuf4yp1" path="res://scenes/levels/base_level.gd" id="1_wwrw0"]
 
-[node name="BaseLevel" type="Node2D" unique_id=1146218034 node_paths=PackedStringArray("start_transition", "end_transition")]
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ukglk"]
+
+[node name="BaseLevel" type="Node2D" unique_id=1146218034 node_paths=PackedStringArray("start_transition", "end_transition", "boundary")]
 script = ExtResource("1_wwrw0")
 start_transition = NodePath("TransitionArea1")
 end_transition = NodePath("TransitionArea2")
+boundary = NodePath("BoundaryBody")
 metadata/_custom_type_script = "uid://dshav4nuf4yp1"
 
 [node name="TransitionArea1" parent="." unique_id=1914383132 node_paths=PackedStringArray("attached_slice") instance=ExtResource("1_ukglk")]
@@ -28,3 +31,11 @@ position = Vector2(720, 0)
 [node name="TransitionArea2" parent="." unique_id=1607869943 node_paths=PackedStringArray("attached_slice") instance=ExtResource("1_ukglk")]
 position = Vector2(970, 376)
 attached_slice = NodePath("../LevelSlice4")
+
+[node name="BoundaryBody" type="StaticBody2D" parent="." unique_id=1723505877]
+position = Vector2(-8, 0)
+rotation = 1.5707964
+collision_layer = 0
+
+[node name="BoundaryShape" type="CollisionShape2D" parent="BoundaryBody" unique_id=64690604]
+shape = SubResource("WorldBoundaryShape2D_ukglk")
