@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name LevelSlice
+
 const ROW_LENGTH = 15
 
 const TILE_HEIGHT = 16.0
@@ -8,6 +10,8 @@ var screen_height = 540
 
 @export var movable_space: Node2D
 @export var foreground_map: TileMapLayer
+
+signal space_moved(amount: int)
 
 @export var lock_animator: AnimationPlayer
 var lock_enabled: bool = false
@@ -26,6 +30,7 @@ func initiate_scroll(speed: float) -> void:
 	if lock_enabled: return
 
 	movable_space.position.y = movable_space.position.y + speed
+	space_moved.emit(speed)
 
 	var global_tile_offset = movable_space.position.y / TILE_HEIGHT
 	var upper_row = -1 - global_tile_offset

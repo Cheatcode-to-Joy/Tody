@@ -107,11 +107,12 @@ _data = {
 &"unlock": SubResource("Animation_g5mvq")
 }
 
-[node name="LevelSlice" type="Node2D" unique_id=328838689 node_paths=PackedStringArray("movable_space", "foreground_map", "lock_animator")]
+[node name="LevelSlice" type="Node2D" unique_id=743748379 node_paths=PackedStringArray("movable_space", "foreground_map", "lock_animator")]
 script = ExtResource("1_bt8eo")
 movable_space = NodePath("MovableSpace")
 foreground_map = NodePath("MovableSpace/Foreground")
 lock_animator = NodePath("LockAnimator")
+metadata/_custom_type_script = "uid://bgv08t3tjgs5s"
 
 [node name="MovableSpace" type="Node2D" parent="." unique_id=1444613658]
 
