@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://c4r8ccwlkauno"]
+
+[ext_resource type="Shader" uid="uid://brjf3yq0nivbe" path="res://resources/shaders/tint_shader.tres" id="1_i1y5r"]
+
+[resource]
+resource_local_to_scene = true
+shader = ExtResource("1_i1y5r")
+shader_parameter/tint_power = 1.0
+shader_parameter/tint_hue = Color(1, 0.89411765, 0.47450978, 1)

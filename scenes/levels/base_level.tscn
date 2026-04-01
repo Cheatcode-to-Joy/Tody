@@ -21,6 +21,7 @@ attached_slice = NodePath("../LevelSlice")
 
 [node name="LevelSlice2" parent="." unique_id=1656361037 instance=ExtResource("1_md458")]
 position = Vector2(240, 0)
+immovable = true
 
 [node name="LevelSlice3" parent="." unique_id=2106712848 instance=ExtResource("1_md458")]
 position = Vector2(480, 0)
@@ -38,4 +39,17 @@ rotation = 1.5707964
 collision_layer = 0
 
 [node name="BoundaryShape" type="CollisionShape2D" parent="BoundaryBody" unique_id=64690604]
+shape = SubResource("WorldBoundaryShape2D_ukglk")
+
+[node name="TopBody" type="StaticBody2D" parent="." unique_id=287722935]
+position = Vector2(0, -8)
+rotation = 3.1415927
+
+[node name="BoundaryShape" type="CollisionShape2D" parent="TopBody" unique_id=174248454]
+shape = SubResource("WorldBoundaryShape2D_ukglk")
+
+[node name="BottomBody" type="StaticBody2D" parent="." unique_id=242642294]
+position = Vector2(0, 548)
+
+[node name="BoundaryShape" type="CollisionShape2D" parent="BottomBody" unique_id=1698829822]
 shape = SubResource("WorldBoundaryShape2D_ukglk")

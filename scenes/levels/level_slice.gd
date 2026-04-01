@@ -8,15 +8,23 @@ const TILE_HEIGHT = 16.0
 const DEFAULT_SCROLL_SPEED = 16.0
 var screen_height = 540
 
+@export var immovable: bool = false
+
 @export var movable_space: Node2D
 @export var foreground_map: TileMapLayer
 
 signal space_moved(amount: int)
 
+@export var lock_visual: Control
 @export var lock_animator: AnimationPlayer
 var lock_enabled: bool = false
 
+func _ready() -> void:
+	if immovable: lock_visual.hide()
+
 func toggle_lock(new_enabled: bool) -> void:
+	if immovable: return
+
 	if (lock_enabled && !new_enabled):
 		lock_enabled = false
 		lock_animator.play("unlock")
@@ -27,7 +35,7 @@ func toggle_lock(new_enabled: bool) -> void:
 		return
 
 func initiate_scroll(speed: float) -> void:
-	if lock_enabled: return
+	if immovable or lock_enabled: return
 
 	movable_space.position.y = movable_space.position.y + speed
 	space_moved.emit(speed)
