@@ -7,7 +7,8 @@
 [node name="GameSpace" type="Node2D" unique_id=1739904231 node_paths=PackedStringArray("game_camera")]
 y_sort_enabled = true
 script = ExtResource("1_frxhd")
-level_scenes = Array[PackedScene]([ExtResource("2_dngml"), ExtResource("2_dngml"), ExtResource("2_dngml")])
+level_scene = ExtResource("2_dngml")
+level_names = Array[String](["intro", "intro", "intro"])
 game_camera = NodePath("GameCamera")
 metadata/_custom_type_script = "uid://5fhrcecs208"
 

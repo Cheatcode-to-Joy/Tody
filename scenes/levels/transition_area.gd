@@ -2,14 +2,9 @@ extends Area2D
 
 class_name TransitionArea
 
-@export var attached_slice: LevelSlice
-
 const SCREEN_HEIGHT = 540
 
 signal player_entered
-
-func _ready() -> void:
-	attached_slice.space_moved.connect(move)
 
 func move(amount: float) -> void:
 	position.y = fmod(position.y + amount, SCREEN_HEIGHT)

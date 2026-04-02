@@ -2,15 +2,18 @@ extends Node2D
 
 class_name GameSpace
 
-@export var level_scenes: Array[PackedScene] = []
+@export var level_scene: PackedScene
+@export var level_names: Array[String] = []
 var level_instances: Array[BaseLevel] = []
 var current_index: int = 0
 
 @export var game_camera: Camera2D
 
 func _ready() -> void:
-	for level_scene in level_scenes:
-		level_instances.append(level_scene.instantiate())
+	for level_name in level_names:
+		var new_level: BaseLevel = level_scene.instantiate()
+		level_instances.append(new_level)
+		new_level.instantiate_from_json(level_name)
 
 	enter_first_level()
 

@@ -3,35 +3,35 @@
 [ext_resource type="PackedScene" uid="uid://dd5serc8gcqcu" path="res://scenes/levels/level_slice.tscn" id="1_md458"]
 [ext_resource type="PackedScene" uid="uid://bun66ybyogtq5" path="res://scenes/levels/transition_area.tscn" id="1_ukglk"]
 [ext_resource type="Script" uid="uid://dshav4nuf4yp1" path="res://scenes/levels/base_level.gd" id="1_wwrw0"]
+[ext_resource type="TileSet" uid="uid://qa51d70xcc53" path="res://resources/tile_sets/background_tile_set.tres" id="2_wwrw0"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ukglk"]
 
 [node name="BaseLevel" type="Node2D" unique_id=1146218034 node_paths=PackedStringArray("start_transition", "end_transition", "boundary")]
 script = ExtResource("1_wwrw0")
+slice_scene = ExtResource("1_md458")
 start_transition = NodePath("TransitionArea1")
 end_transition = NodePath("TransitionArea2")
 boundary = NodePath("BoundaryBody")
 metadata/_custom_type_script = "uid://dshav4nuf4yp1"
 
+[node name="BGColour" type="ColorRect" parent="." unique_id=1897586224]
+custom_minimum_size = Vector2(960, 540)
+offset_right = 240.0
+offset_bottom = 540.0
+mouse_filter = 2
+color = Color(0.23137255, 0.34901962, 0.6039216, 1)
+
+[node name="Background" type="TileMapLayer" parent="." unique_id=356826702]
+tile_set = ExtResource("2_wwrw0")
+
 [node name="TransitionArea1" parent="." unique_id=1914383132 node_paths=PackedStringArray("attached_slice") instance=ExtResource("1_ukglk")]
 position = Vector2(10, 376)
-attached_slice = NodePath("../LevelSlice")
-
-[node name="LevelSlice" parent="." unique_id=328838689 instance=ExtResource("1_md458")]
-
-[node name="LevelSlice2" parent="." unique_id=1656361037 instance=ExtResource("1_md458")]
-position = Vector2(240, 0)
-immovable = true
-
-[node name="LevelSlice3" parent="." unique_id=2106712848 instance=ExtResource("1_md458")]
-position = Vector2(480, 0)
-
-[node name="LevelSlice4" parent="." unique_id=1300982809 instance=ExtResource("1_md458")]
-position = Vector2(720, 0)
+attached_slice = NodePath("")
 
 [node name="TransitionArea2" parent="." unique_id=1607869943 node_paths=PackedStringArray("attached_slice") instance=ExtResource("1_ukglk")]
 position = Vector2(970, 376)
-attached_slice = NodePath("../LevelSlice4")
+attached_slice = NodePath("")
 
 [node name="BoundaryBody" type="StaticBody2D" parent="." unique_id=1723505877]
 position = Vector2(-8, 0)
